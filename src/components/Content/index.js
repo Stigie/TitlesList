@@ -8,11 +8,6 @@ class Content extends Component {
       <content className={styles.content}>
         <Item/>
         <Item/>
-        <Item/>
-        <Item/>
-        <Item/>
-        <Item/>
-        <Item/>
       </content>
     )
   }

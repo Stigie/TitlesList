@@ -6,4 +6,5 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-top: 9px;
+    min-height: calc(100vh - 362px);
 }
