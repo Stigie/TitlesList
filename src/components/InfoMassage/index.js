@@ -11,10 +11,10 @@ class InfoMassage extends Component {
                 </If>
                 <If true={this.props.state === "error"}>
                     Ошибка загрузки данных
-            </If>
+                </If>
                 <If true={this.props.state === "empty"}>
                     По запросу ничего не найдено
-            </If>
+                </If>
             </div >
         )
     }
