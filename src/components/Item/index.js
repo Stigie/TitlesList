@@ -11,11 +11,6 @@ class Item extends Component {
                 <div className={styles.sourse}>
                     {this.props.placeOfPublication}
                 </div>
-                {/* <div className={styles.dark}>
-                        <div className={styles.toptriangle}/>
-                        <div className={styles.rectangular}/>
-                        <div className={styles.bottomtriangle}/>
-                    </div> */}
             </div >
         )
     }

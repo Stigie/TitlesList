@@ -6,39 +6,15 @@ class TitelListStore {
   @observable inputText;
 
   constructor() {
-    this.state = "pending"
+    this.state = "done"
     this.listOfTitles = [];
-    this.loadData().then(
-      rez => {
-        this.listOfTitles = rez;
-        if (this.listOfTitles.length === 0) {
-          this.state = "empty";
-        } else {
-          this.state = "done";
-        }
-      },
-      (er) => {
-        this.state = "error";
-        console.log(er);
-      }
-    );
     this.inputText = "";
-
-    console.log(this.listOfTitles);
   }
   @action('load DATA')
-  async loadData() {
+  async loadData(searchText) {
     this.state = "pending";
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        try {
-          resolve(DATA.list);
-        }
-        catch (error) {
-          reject(error);
-        }
-      }, 1000);
-    });
+    let url = "https://chroniclingamerica.loc.gov/search/titles/results/?terms=" + searchText + "&format=json&page=1";
+    return fetch(url);
   }
   @action('click on submit, filter data')
   async clickOnsubmit(e) {
@@ -47,8 +23,11 @@ class TitelListStore {
     this.state = "pending";
     this.listOfTitles = [];
     try {
-      this.listOfTitles = await this.loadData();
-      this.listOfTitles = this.listOfTitles.filter(title => title.title.toLowerCase() === searchText);
+      this.listOfTitles = await this.loadData(searchText)
+        .then(
+          (response) => { return response.json() },
+          (error) => { console.log(error) })
+        .then((item) => { return item.items });
       runInAction(() => {
         if (this.listOfTitles.length === 0) {
           this.state = "empty";
@@ -62,9 +41,6 @@ class TitelListStore {
         this.state = "error"
       })
     }
-    console.log(this.listOfTitles);
-
-
   }
   @action('onChange input')
   onChangeinput(e) {
@@ -78,47 +54,6 @@ class TitelListStore {
       return true;
     else return false;
   }
-
 }
-const DATA = {
-  list: [
-    {
-      title: 'Michigan City dispatch.',
-      placeOfPublication: 'Burton, Mich.',
-      id: "/lccn/sn87056278/"
-    },
-    {
-      title: 'Michigan voice.',
-      placeOfPublication: 'Lansing, Mich.',
-      id: '/lccn/sn93023625/'
-    },
-    {
-      title: 'The Michigan state echo.',
-      placeOfPublication: 'Lansing, Mich.',
-      id: '/lccn/sn2001061626/'
-    },
-    {
-      title: 'The Petoskey evening news and Northern Michigan review.',
-      placeOfPublication: 'Petoskey, Mich.',
-      id: '/lccn/sn96077417/'
-    },
-    {
-      title: 'The Michigan Whig.',
-      placeOfPublication: 'Ann Arbor, Washtenaw Co., M.T. [i.e. Michigan Territory]',
-      id: '/lccn/sn95077650/'
-    },
-    {
-      title: 'University chronicle.',
-      placeOfPublication: 'University of Michigan, Ann Arbor, Mich.',
-      id: '/lccn/sn98065395/'
-    },
-    {
-      title: 'The Michigan bulletin.',
-      placeOfPublication: 'Lansing, Mich.',
-      id: '/lccn/sn2001061641/'
-    }
-  ]
-};
-
 
 export default new TitelListStore();

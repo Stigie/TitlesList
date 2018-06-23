@@ -19,7 +19,7 @@ class Content extends Component {
           <Item
             key={listOfTitles.id}
             title={listOfTitles.title}
-            placeOfPublication={listOfTitles.placeOfPublication} />
+            placeOfPublication={listOfTitles.place_of_publication} />
         </For>
       </content>
     )
