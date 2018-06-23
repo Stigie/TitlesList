@@ -58,6 +58,7 @@
     display: block;
     position: relative;
     color: #383636;
+    max-width: 50%;
 }
 .sourse{
     background-color: #890e4f;

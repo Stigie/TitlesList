@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Item from "../Item";
 import styles from "./styles.module.css";
 import { observer, inject } from 'mobx-react';
-import Load from '../Load';
+import InfoMassage from '../InfoMassage';
 
 @inject('TitelListStore')
 @observer
@@ -12,8 +12,8 @@ class Content extends Component {
 
     return (
       <content className={styles.content}>
-        <If true={TitelListStore.loadState}>
-          <Load />
+        <If true={TitelListStore.state !== "done"}>
+          <InfoMassage state={TitelListStore.state} />
         </If>
         <For each="listOfTitles" in={TitelListStore.listOfTitles}>
           <Item
