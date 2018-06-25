@@ -2,17 +2,17 @@ import { observable, computed, action, runInAction } from 'mobx';
 
 class TitelListStore {
   @observable listOfTitles;
-  @observable state;
+  @observable status;
   @observable inputText;
 
   constructor() {
-    this.state = "done"
+    this.status = "done"
     this.listOfTitles = [];
     this.inputText = "";
   }
   @action('load DATA')
   async loadData(searchText) {
-    this.state = "pending";
+    this.status = "pending";
     let url = "https://chroniclingamerica.loc.gov/search/titles/results/?terms=" + searchText + "&format=json&page=1";
     return fetch(url);
   }
@@ -20,7 +20,7 @@ class TitelListStore {
   async clickOnsubmit(e) {
     e.preventDefault();
     let searchText = e.currentTarget.children.Search.value.toLowerCase();
-    this.state = "pending";
+    this.status = "pending";
     this.listOfTitles = [];
     try {
       this.listOfTitles = await this.loadData(searchText)
@@ -30,15 +30,15 @@ class TitelListStore {
         .then((item) => { return item.items });
       runInAction(() => {
         if (this.listOfTitles.length === 0) {
-          this.state = "empty";
+          this.status = "empty";
         } else {
-          this.state = "done";
+          this.status = "done";
         }
       })
     }
     catch (error) {
       runInAction(() => {
-        this.state = "error"
+        this.status = "error"
       })
     }
   }
@@ -49,7 +49,7 @@ class TitelListStore {
   @computed get getInputText() {
     return this.inputText;
   }
-  @computed get buttonState() {
+  @computed get buttonStatus() {
     if (this.inputText === "")
       return true;
     else return false;

@@ -11,16 +11,14 @@ import Footer from '../Footer';
 class App extends Component {
   render() {
     return (
-      <div className={styles.container}>
-        <Header />
-        <Provider TitelListStore={TitelListStore}>
+      <Provider TitelListStore={TitelListStore}>
+        <div className={styles.container}>
+          <Header />
           <Form />
-        </Provider>
-        <Provider TitelListStore={TitelListStore}>
           <Content />
-        </Provider>
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </Provider>
     );
   }
 }
