@@ -9,7 +9,6 @@ import InfoMassage from '../InfoMassage';
 class Content extends Component {
   render() {
     const { TitelListStore } = this.props;
-
     return (
       <content className={styles.content}>
         <If true={TitelListStore.state !== "done"}>
