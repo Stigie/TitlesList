@@ -5,7 +5,7 @@ import loadImg from '../../assets/load.gif'
 class InfoMassage extends Component {
     render() {
         return (
-            < div className={styles.load} >
+            <div className={styles.load}>
                 <If true={this.props.state === "pending"}>
                     <img src={loadImg} />
                 </If>
