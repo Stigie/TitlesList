@@ -13,21 +13,19 @@ class TitelListStore {
   @action('load DATA')
   async loadData(searchText) {
     this.status = "pending";
-    let url = "https://chroniclingamerica.loc.gov/search/titles/results/?terms=" + searchText + "&format=json&page=1";
-    return fetch(url);
+    let url = `https://chroniclingamerica.loc.gov/search/titles/results/?terms=${searchText}&format=json&page=1`;
+    return fetch(url)
   }
   @action('click on submit, filter data')
   async clickOnsubmit(e) {
     e.preventDefault();
-    let searchText = e.currentTarget.children.Search.value.toLowerCase();
+    let searchText = this.inputText;
     this.status = "pending";
     this.listOfTitles = [];
     try {
-      this.listOfTitles = await this.loadData(searchText)
-        .then(
-          (response) => { return response.json() },
-          (error) => { console.log(error) })
-        .then((item) => { return item.items });
+      let response = await this.loadData(searchText);
+      let jsonResponse = await response.json();
+      this.listOfTitles = jsonResponse.items;
       runInAction(() => {
         if (this.listOfTitles.length === 0) {
           this.status = "empty";
@@ -38,7 +36,8 @@ class TitelListStore {
     }
     catch (error) {
       runInAction(() => {
-        this.status = "error"
+        this.status = "error";
+        console.log(error);
       })
     }
   }
