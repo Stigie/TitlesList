@@ -41,7 +41,7 @@ class TitelListStore {
   @action('click on submit, filter data')
   async clickOnsubmit(e) {
     e.preventDefault();
-    let searchText = e.currentTarget.children.Search.value.toLowerCase();
+    let searchText =  this.inputText.toLowerCase();
     this.status = "pending";
     this.listOfTitles = [];
     try {
