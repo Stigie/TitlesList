@@ -4,22 +4,32 @@ import styles from "./styles.module.css";
 import { observer, inject } from 'mobx-react';
 import InfoMassage from '../InfoMassage';
 
+
 @inject('TitelListStore')
 @observer
 class Content extends Component {
+  renderInfoBlock = () => {
+    if (this.props.TitelListStore.status !== "done") {
+      return (<InfoMassage status={this.props.TitelListStore.status} />);
+    }
+  }
+  renderListOfItems = () => {
+    let listToRender = this.props.TitelListStore.listOfTitles.map(
+      (item) => { 
+        return (<Item 
+          key={item.id} 
+          title={item.title} 
+          placeOfPublication={item.place_of_publication} />
+        )
+      }
+    );
+    return listToRender;
+  }
   render() {
-    const { TitelListStore } = this.props;
     return (
       <content className={styles.content}>
-        <If true={TitelListStore.state !== "done"}>
-          <InfoMassage state={TitelListStore.state} />
-        </If>
-        <For each="listOfTitles" in={TitelListStore.listOfTitles}>
-          <Item
-            key={listOfTitles.id}
-            title={listOfTitles.title}
-            placeOfPublication={listOfTitles.place_of_publication} />
-        </For>
+        { this.renderInfoBlock() }
+        { this.renderListOfItems() }
       </content>
     )
   }
