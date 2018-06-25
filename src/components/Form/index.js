@@ -15,7 +15,6 @@ class Form extends Component {
           className={styles.input}
           placeholder="Search" />
         <button className={styles.button} disabled={TitelListStore.buttonState}>Go</button>
-        <div>{TitelListStore.buttonState}</div>
       </form>
     );
   }
