@@ -2,33 +2,31 @@ import { observable, computed, action, runInAction } from 'mobx';
 
 class TitelListStore {
   @observable listOfTitles;
-  @observable state;
+  @observable status;
   @observable inputText;
 
   constructor() {
-    this.state = "pending"
+    this.status = "pending"
     this.listOfTitles = [];
     this.loadData().then(
       rez => {
         this.listOfTitles = rez;
         if (this.listOfTitles.length === 0) {
-          this.state = "empty";
+          this.status = "empty";
         } else {
-          this.state = "done";
+          this.status = "done";
         }
       },
       (er) => {
-        this.state = "error";
+        this.status = "error";
         console.log(er);
       }
     );
     this.inputText = "";
-
-    console.log(this.listOfTitles);
   }
   @action('load DATA')
   async loadData() {
-    this.state = "pending";
+    this.status = "pending";
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         try {
@@ -44,27 +42,24 @@ class TitelListStore {
   async clickOnsubmit(e) {
     e.preventDefault();
     let searchText = e.currentTarget.children.Search.value.toLowerCase();
-    this.state = "pending";
+    this.status = "pending";
     this.listOfTitles = [];
     try {
       this.listOfTitles = await this.loadData();
       this.listOfTitles = this.listOfTitles.filter(title => title.title.toLowerCase() === searchText);
       runInAction(() => {
         if (this.listOfTitles.length === 0) {
-          this.state = "empty";
+          this.status = "empty";
         } else {
-          this.state = "done";
+          this.status = "done";
         }
       })
     }
     catch (error) {
       runInAction(() => {
-        this.state = "error"
+        this.status = "error"
       })
     }
-    console.log(this.listOfTitles);
-
-
   }
   @action('onChange input')
   onChangeinput(e) {
@@ -73,7 +68,7 @@ class TitelListStore {
   @computed get getInputText() {
     return this.inputText;
   }
-  @computed get buttonState() {
+  @computed get buttonStatus() {
     if (this.inputText === "")
       return true;
     else return false;
