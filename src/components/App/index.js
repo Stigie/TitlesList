@@ -12,10 +12,10 @@ class App extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <Header/>
-        <Form/>
-        <Content/>
-        <Footer/>  
+        <Header />
+        <Form />
+        <Content />
+        <Footer />
       </div>
     );
   }

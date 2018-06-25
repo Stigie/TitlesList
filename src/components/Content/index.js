@@ -6,8 +6,8 @@ class Content extends Component {
   render() {
     return (
       <content className={styles.content}>
-        <Item/>
-        <Item/>
+        <Item />
+        <Item />
       </content>
     )
   }
