@@ -2,34 +2,31 @@ import React, { Component } from 'react';
 import Item from "../Item";
 import styles from "./styles.module.css";
 import { observer, inject } from 'mobx-react';
-import InfoMassage from '../InfoMassage';
+import InfoMassage from '../InfoMessage';
 
 
-@inject('TitelListStore')
+@inject('titleListStore')
 @observer
 class Content extends Component {
-  renderInfoBlock = () => {
-    if (this.props.TitelListStore.status !== "done") {
-      return (<InfoMassage status={this.props.TitelListStore.status} />);
+  renderContent() {
+    if (this.props.titleListStore.status !== "done") {
+      return (<InfoMassage status={this.props.titleListStore.status} />);
+    }
+    else {
+      return this.props.titleListStore.listOfTitles.map((item) => {
+        return (<Item
+          key={item.id}
+          title={item.title}
+          placeOfPublication={item.placeOfPublication} />
+        )
+      });
     }
   }
-  renderListOfItems = () => {
-    let listToRender = this.props.TitelListStore.listOfTitles.map(
-      (item) => { 
-        return (<Item 
-          key={item.id} 
-          title={item.title} 
-          placeOfPublication={item.place_of_publication} />
-        )
-      }
-    );
-    return listToRender;
-  }
+
   render() {
     return (
       <content className={styles.content}>
-        { this.renderInfoBlock() }
-        { this.renderListOfItems() }
+        {this.renderContent() }
       </content>
     )
   }
