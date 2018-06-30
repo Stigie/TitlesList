@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Item from "../Item";
-import styles from "./styles.module.css";
 import { observer, inject } from 'mobx-react';
 import InfoMassage from '../InfoMessage';
+import { ContentView } from './style'
 
 
 @inject('titleListStore')
@@ -25,9 +25,9 @@ class Content extends Component {
 
   render() {
     return (
-      <content className={styles.content}>
-        {this.renderContent() }
-      </content>
+      <ContentView>
+        {this.renderContent()}
+      </ContentView>
     )
   }
 }

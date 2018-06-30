@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import styles from "./styles.module.css";
+import { Load } from './style';
 import loadImg from '../../assets/load.gif'
 
 class InfoMessage extends Component {
   renderInfo() {
-    switch(this.props.status){
+    switch (this.props.status) {
       case "pending":
         return (<img src={loadImg} />);
       case "error":
@@ -15,9 +15,9 @@ class InfoMessage extends Component {
   }
   render() {
     return (
-      <div className={styles.load}>
-        { this.renderInfo() }
-      </div >
+      <Load>
+        {this.renderInfo()}
+      </Load>
     )
   }
 }

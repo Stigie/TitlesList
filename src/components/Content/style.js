@@ -1,4 +1,5 @@
-.content {
+import styled, { css } from 'styled-components';
+const ContentView = styled.div`
   display: flex;
   max-width: 804px;
   width: 85%;
@@ -7,4 +8,5 @@
   justify-content: flex-start;
   margin-top: 9px;
   min-height: calc(100vh - 362px);
-}
+`;
+export { ContentView }

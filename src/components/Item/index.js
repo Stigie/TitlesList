@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import styles from "./styles.module.css";
+import { ItemView, Dark, TopTriangle, BottomTriangle, Rectangular, Title, Source } from "./style";
 
 class Item extends Component {
   render() {
     return (
-      <div className={styles.item}>
-        <div className={styles.title}>
+      <ItemView>
+        <Title>
           {this.props.title}
-        </div>
-        <div className={styles.sourse}>
+        </Title>
+        <Source>
           {this.props.placeOfPublication}
-        </div>
-      </div>
+        </Source>
+      </ItemView>
     )
   }
 }
