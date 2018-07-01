@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ItemView, Dark, TopTriangle, BottomTriangle, Rectangular, Title, Source } from "./style";
+import { ItemView, Dark, Rectangular, Title, Source } from "./style";
 
 class Item extends Component {
   render() {
@@ -11,6 +11,9 @@ class Item extends Component {
         <Source>
           {this.props.placeOfPublication}
         </Source>
+        <Dark>
+          <Rectangular/>
+        </Dark>
       </ItemView>
     )
   }
