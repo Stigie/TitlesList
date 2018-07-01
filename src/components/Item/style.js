@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 const ItemView = styled.div`
-  flex: 1;
   overflow: hidden;
   display: inline;
   position: relative;
