@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-// import bgImage from '../../assets/background1.png';
+
 const ItemView = styled.div`
   flex: 1;
   overflow: hidden;
@@ -9,8 +9,6 @@ const ItemView = styled.div`
   box-sizing: border-box;
   background-size: cover;
   padding-bottom: 10px;
-  // background-image: url(${bgImage});
-  /* background-position-x: 50%; */
   margin-bottom: 7px;
   background-color: #d2d3d5;
 `;
