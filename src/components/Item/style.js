@@ -1,58 +1,38 @@
 import styled, { css } from 'styled-components';
-import bgImage from '../../assets/background1.png';
+
 const ItemView = styled.div`
-  display: block;
+  overflow: hidden;
+  display: inline;
   position: relative;
-  flex-basis: 107px;
   padding-left: 26px;
   box-sizing: border-box;
-  background-image: url(${bgImage});
   background-size: cover;
   padding-bottom: 10px;
-  background-position-x: 50%;
   margin-bottom: 7px;
+  background-color: #d2d3d5;
 `;
 
 const Dark = styled.div`
+  transform: rotate(-21deg) scale(1,3);
   display: block;
-  min-width: 43%;
-  width: 43%;
+  min-width: 50%;
+  width: 50%;
   height: 100%;
   min-height: 100%;
   background-color: #4b4b4d;
   position: absolute;
-  top: 0;
-  right: 0px;
+  overflow: hidden;
+  top: -50%;
+  right: -4%;
   z-index: 10;
-`;
-
-const TopTriangle = styled.div`
-  z-index: 13;
-  width: 0;
-  height: 0;
-  border-top: 107px solid #4b4b4d;
-  border-left: 32px solid transparent;
-  position: absolute;
-  left: -4px;
-`;
-
-const BottomTriangle = styled.div`
-  position: absolute;
-  z-index: 13;
-  width: 0;
-  height: 0;
-  border-bottom: 107px solid #d2d3d5;
-  border-right: 41px solid transparent;
-  left: -39px;
-  top: 0px;
 `;
 
 const Rectangular = styled.div`
   position: absolute;
-  top: 0;
+  transform: rotate(15deg);
   height: 100%;
-  width: 66px;
-  left: -38px;
+  width: 34px;
+  left: -1%;
   background-color: #363435;
   z-index: 10;
 `;
@@ -81,4 +61,4 @@ const Source = styled.div`
   box-sizing: border-box;
   line-height: 24px;
 `;
-export { ItemView, Dark, TopTriangle, BottomTriangle, Rectangular, Title, Source }
+export { ItemView, Dark, Rectangular, Title, Source }
