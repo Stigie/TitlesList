@@ -1,17 +1,19 @@
-.item {
+import styled, { css } from 'styled-components';
+import bgImage from '../../assets/background1.png';
+const ItemView = styled.div`
   display: block;
   position: relative;
   flex-basis: 107px;
   padding-left: 26px;
   box-sizing: border-box;
-  background-image: url(../../assets/background1.png);
+  background-image: url(${bgImage});
   background-size: cover;
   padding-bottom: 10px;
   background-position-x: 50%;
   margin-bottom: 7px;
-}
+`;
 
-.dark {
+const Dark = styled.div`
   display: block;
   min-width: 43%;
   width: 43%;
@@ -22,9 +24,9 @@
   top: 0;
   right: 0px;
   z-index: 10;
-}
+`;
 
-.toptriangle {
+const TopTriangle = styled.div`
   z-index: 13;
   width: 0;
   height: 0;
@@ -32,9 +34,9 @@
   border-left: 32px solid transparent;
   position: absolute;
   left: -4px;
-}
+`;
 
-.bottomtriangle {
+const BottomTriangle = styled.div`
   position: absolute;
   z-index: 13;
   width: 0;
@@ -43,9 +45,9 @@
   border-right: 41px solid transparent;
   left: -39px;
   top: 0px;
-}
+`;
 
-.rectangular {
+const Rectangular = styled.div`
   position: absolute;
   top: 0;
   height: 100%;
@@ -53,9 +55,9 @@
   left: -38px;
   background-color: #363435;
   z-index: 10;
-}
+`;
 
-.title {
+const Title = styled.div`
   font-size: 28px;
   line-height: 38px;
   z-index: 11;
@@ -63,9 +65,9 @@
   position: relative;
   color: #383636;
   max-width: 50%;
-}
+`;
 
-.sourse {
+const Source = styled.div`
   background-color: #890e4f;
   display: inline-block;
   position: relative;
@@ -78,4 +80,5 @@
   width: 77%;
   box-sizing: border-box;
   line-height: 24px;
-}
+`;
+export { ItemView, Dark, TopTriangle, BottomTriangle, Rectangular, Title, Source }

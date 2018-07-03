@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import styles from "./styles.module.css";
+import { Title, FooterView } from './style'
 
 class Footer extends Component {
   render() {
     return (
-      <footer className={styles.footer}>
-        <a className={styles.title}>Sticky Footer</a>
-      </footer>
+      <FooterView>
+        <Title>Sticky Footer</Title>
+      </FooterView>
     )
   }
 }

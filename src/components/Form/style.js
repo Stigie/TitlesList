@@ -1,4 +1,5 @@
-.main {
+import styled, { css } from 'styled-components';
+const Main = styled.form`
   display: flex;
   justify-content: flex-start;
   padding-top: 29px;
@@ -9,9 +10,9 @@
   background-color: #d2d3d5;
   margin-top: 8px;
   width: 100%;
-}
+`;
 
-.input {
+const Input = styled.input`
   margin-top: 0;
   padding-left: 10px;
   box-sizing: border-box;
@@ -25,9 +26,9 @@
   height: 42px;
   margin-top: -1px;
   padding-top: 4px;
-}
+`;
 
-.button {
+const Button = styled.button`
   background: #890e4f;
   color: #fff;
   border-radius: 1px;
@@ -39,4 +40,5 @@
   padding-right: 65px;
   /* display: none; */
   font-weight: 100;
-}
+`;
+export { Main, Input, Button }

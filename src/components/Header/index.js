@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import styles from "./styles.module.css";
+import { Title, HeaderView } from './style'
 
 class Header extends Component {
   render() {
-    const { InputTextStore } = this.props;
     return (
-      <header className={styles.header}>
-        <a className={styles.title}>Header</a>
-      </header>
+      <HeaderView>
+        <Title>Header</Title>
+      </HeaderView>
     )
   }
 }
