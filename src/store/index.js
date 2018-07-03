@@ -25,7 +25,6 @@ class TitleListStore {
       let response = await fetch(url);
       let jsonResponse = await response.json();
       this.listOfTitles = jsonResponse.map((item) => { return new Title(item.id, item.title, item.placeOfPublication) });
-      console.log(this.listOfTitles);
       runInAction(() => {
         if (this.listOfTitles.length === 0) {
           this.status = "empty";

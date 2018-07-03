@@ -1,0 +1,8 @@
+<svg width="804" height="107" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>background-svg</title>
+  <rect fill="#d2d3d5" id="background" height="107" width="804" y="0" x="0"/>
+  <path id="big_dark_part" d="M456 0 L485 107 L804 107 L804 0 Z" fill="#4b4b4d"/>
+  <path id="dark_part" d="M420 0 L460 107 L486 107 L457 0 Z" fill="#363435"/>
+ </g>
+</svg>

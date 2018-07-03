@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import bgImage from "../../assets/background-svg.svg"
 
 const ItemView = styled.div`
   overflow: hidden;
@@ -10,6 +11,9 @@ const ItemView = styled.div`
   padding-bottom: 10px;
   margin-bottom: 7px;
   background-color: #d2d3d5;
+  background-position-x: 50%;
+  background-image: url(${bgImage});
+  background-size: cover;
 `;
 
 const Dark = styled.div`
