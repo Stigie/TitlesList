@@ -11,9 +11,6 @@ class Item extends Component {
         <Source>
           {this.props.placeOfPublication}
         </Source>
-        <Dark>
-          <Rectangular/>
-        </Dark>
       </ItemView>
     )
   }
