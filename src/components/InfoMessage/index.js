@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Load from './style';
 import loadImg from '../../assets/load.gif';
 
@@ -24,4 +25,9 @@ class InfoMessage extends React.Component {
     );
   }
 }
+
+InfoMessage.propTypes = {
+  status: PropTypes.string,
+};
+
 export default InfoMessage;

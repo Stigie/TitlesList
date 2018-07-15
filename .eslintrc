@@ -14,9 +14,7 @@
     "browser": true
   },
   "rules": {
-    "max-len": [2, 150, 4, {"ignoreUrls": true}],
-    "react/jsx-uses-vars": 1,
-    "react/prop-types": 0
+    "max-len": [2, 150, 4, {"ignoreUrls": true}]
   },
   "globals": {
       "fetch": true

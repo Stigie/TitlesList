@@ -7,7 +7,6 @@ import Content from '../Content';
 import Footer from '../Footer';
 import Container from './style';
 
-
 function App() {
   return (
     <Provider titleListStore={TitleListStore}>
@@ -20,6 +19,5 @@ function App() {
     </Provider>
   );
 }
-
 
 export default App;
