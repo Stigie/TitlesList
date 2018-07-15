@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+
 const ContentView = styled.div`
   display: flex;
   max-width: 804px;
@@ -9,4 +10,4 @@ const ContentView = styled.div`
   margin-top: 9px;
   min-height: calc(100vh - 362px);
 `;
-export { ContentView }
+export default ContentView;

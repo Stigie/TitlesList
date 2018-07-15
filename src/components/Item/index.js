@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import { ItemView, Dark, Rectangular, Title, Source } from "./style";
+import React from 'react';
+import { ItemView, Title, Source } from './style';
 
-class Item extends Component {
+class Item extends React.Component {
   render() {
+    const { props } = this;
     return (
       <ItemView>
         <Title>
-          {this.props.title}
+          {props.title}
         </Title>
         <Source>
-          {this.props.placeOfPublication}
+          {props.placeOfPublication}
         </Source>
       </ItemView>
-    )
+    );
   }
 }
-export default Item
+export default Item;

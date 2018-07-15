@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { Title, FooterView } from './style'
+import React from 'react';
+import { Title, FooterView } from './style';
 
-class Footer extends Component {
-  render() {
-    return (
-      <FooterView>
-        <Title>Sticky Footer</Title>
-      </FooterView>
-    )
-  }
+function Footer() {
+  return (
+    <FooterView>
+      <Title>Header</Title>
+    </FooterView>
+  );
 }
 export default Footer;

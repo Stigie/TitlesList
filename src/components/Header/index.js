@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import { Title, HeaderView } from './style'
+import React from 'react';
+import { HeaderView, Title } from './style';
 
-class Header extends Component {
-  render() {
-    return (
-      <HeaderView>
-        <Title>Header</Title>
-      </HeaderView>
-    )
-  }
+function Header() {
+  return (
+    <HeaderView>
+      <Title>Header</Title>
+    </HeaderView>
+  );
 }
 export default Header;

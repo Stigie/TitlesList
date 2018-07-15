@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
-import { Load } from './style';
-import loadImg from '../../assets/load.gif'
+import React from 'react';
+import Load from './style';
+import loadImg from '../../assets/load.gif';
 
-class InfoMessage extends Component {
+class InfoMessage extends React.Component {
   renderInfo() {
-    switch (this.props.status) {
-      case "pending":
+    const { status } = this.props;
+    switch (status) {
+      case 'pending':
         return (<img src={loadImg} />);
-      case "error":
-        return ("Ошибка загрузки данных");
-      case "empty":
-        return ("По запросу ничего не найдено");
+      case 'error':
+        return ('Ошибка загрузки данных');
+      case 'empty':
+        return ('По запросу ничего не найдено');
+      default: return null;
     }
   }
+
   render() {
     return (
       <Load>
         {this.renderInfo()}
       </Load>
-    )
+    );
   }
 }
-export default InfoMessage
+export default InfoMessage;
