@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
-import Item from "../Item";
+import React from 'react';
+import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
+import Item from '../Item';
 import InfoMassage from '../InfoMessage';
-import { ContentView } from './style'
+import ContentView from './style';
 
 
 @inject('titleListStore')
 @observer
-class Content extends Component {
+class Content extends React.Component {
   renderContent() {
-    if (this.props.titleListStore.status !== "done") {
-      return (<InfoMassage status={this.props.titleListStore.status} />);
+    const { titleListStore } = this.props;
+    if (titleListStore.status !== 'done') {
+      return (<InfoMassage status={titleListStore.status} />);
     }
-    else {
-      return this.props.titleListStore.listOfTitles.map((item) => {
-        return (<Item
-          key={item.id}
-          title={item.title}
-          placeOfPublication={item.placeOfPublication} />
-        )
-      });
-    }
+    return titleListStore.listOfTitles.map(item => (<Item
+      key={item.id}
+      title={item.title}
+      placeOfPublication={item.placeOfPublication} />
+    ));
   }
 
   render() {
@@ -28,7 +26,16 @@ class Content extends Component {
       <ContentView>
         {this.renderContent()}
       </ContentView>
-    )
+    );
   }
 }
+
+Content.propTypes = {
+  titleListStore: PropTypes.object,
+  listOfTitles: PropTypes.object,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  placeOfPublication: PropTypes.string,
+};
+
 export default Content;

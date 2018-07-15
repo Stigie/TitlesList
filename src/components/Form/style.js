@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+
 const Main = styled.form`
   display: flex;
   justify-content: flex-start;
@@ -41,4 +42,6 @@ const Button = styled.button`
   /* display: none; */
   font-weight: 100;
 `;
-export { Main, Input, Button }
+export {
+  Main, Input, Button,
+};

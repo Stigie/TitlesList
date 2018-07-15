@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+
 const Title = styled.a`
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 45px;
@@ -7,7 +8,7 @@ const Title = styled.a`
   font-weight: 500;
   margin-left: -9px;
   margin-top: -18px;
-`
+`;
 
 const FooterView = styled.footer`
   display: flex;
@@ -16,5 +17,7 @@ const FooterView = styled.footer`
   background-color: #d2d3d5;
   justify-content: center;
   align-items: center;
-`
-export { Title, FooterView } 
+`;
+export {
+  Title, FooterView,
+};

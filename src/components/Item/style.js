@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import bgImage from "../../assets/background-svg.svg"
+import styled from 'styled-components';
+import bgImage from '../../assets/background-svg.svg';
 
 const ItemView = styled.div`
   overflow: hidden;
@@ -65,4 +65,6 @@ const Source = styled.div`
   box-sizing: border-box;
   line-height: 24px;
 `;
-export { ItemView, Dark, Rectangular, Title, Source }
+export {
+  ItemView, Dark, Rectangular, Title, Source,
+};
