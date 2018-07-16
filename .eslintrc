@@ -14,7 +14,8 @@
     "browser": true
   },
   "rules": {
-    "max-len": [2, 150, 4, {"ignoreUrls": true}]
+    "max-len": [2, 150, 4, {"ignoreUrls": true}],
+    "no-param-reassign": 0
   },
   "globals": {
       "fetch": true

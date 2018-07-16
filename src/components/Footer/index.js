@@ -4,7 +4,7 @@ import { Title, FooterView } from './style';
 function Footer() {
   return (
     <FooterView>
-      <Title>Header</Title>
+      <Title>Sticky Footer</Title>
     </FooterView>
   );
 }

@@ -1,60 +1,37 @@
-import {
-  observable, computed, action, runInAction,
-} from 'mobx';
+import { types, flow } from 'mobx-state-tree';
 
-class Title {
-  id;
+export const Title = types.model('Title', {
+  id: types.string,
+  title: types.string,
+  placeOfPublication: types.string,
+});
 
-  @observable title;
-
-  @observable placeOfPublication;
-
-  constructor(id, title, placeOfPublication) {
-    this.id = id;
-    this.title = title;
-    this.placeOfPublication = placeOfPublication;
+async function clickOnsubmit(searchText) {
+  const url = `http://localhost:3000/titles?q=${searchText}`;
+  try {
+    const response = await fetch(url);
+    const jsonResponse = await response.json();
+    return jsonResponse.map(item => new Title(item.id, item.title, item.placeOfPublication));
+  } catch (error) {
+    return error;
+    // console.log(error);
   }
 }
 
-class TitleListStore {
-  @observable listOfTitles = [];
-
-  @observable status = 'done';
-
-  @observable inputText = '';
-
-  @action('click on submit, filter data')
-  async clickOnsubmit() {
-    this.status = 'pending';
-    const url = `http://localhost:3000/titles?q=${this.inputText}`;
-    this.listOfTitles = [];
+export const TitleListStore = types.model('TitleListStore', {
+  listOfTitles: types.array(Title),
+  status: types.enumeration('Status', ['pending', 'done', 'error', 'empty']),
+  inputText: types.string,
+}).actions(self => ({
+  fetchTitles: flow(function* fetchTitles() {
+    self.listOfTitles = [];
+    self.status = 'pending';
     try {
-      const response = await fetch(url);
-      const jsonResponse = await response.json();
-      this.listOfTitles = jsonResponse.map(item => new Title(item.id, item.title, item.placeOfPublication));
-      runInAction(() => {
-        if (this.listOfTitles.length === 0) {
-          this.status = 'empty';
-        } else {
-          this.status = 'done';
-        }
-      });
+      self.listOfTitles = yield clickOnsubmit(self.inputText);
+      self.status = 'done';
     } catch (error) {
-      runInAction(() => {
-        this.status = 'error';
-        // console.log(error);
-      });
+      // console.error('Failed to fetch projects', error);
+      self.status = 'error';
     }
-  }
-
-  @action('onChange input')
-  onChangeinput(mess) {
-    this.inputText = mess;
-  }
-
-  @computed get isButtonDisabled() {
-    return !this.inputText;
-  }
-}
-
-export default new TitleListStore();
+  }),
+}));
