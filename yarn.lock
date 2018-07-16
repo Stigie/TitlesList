@@ -4238,7 +4238,7 @@ mkdirp@0.5.1, mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@
   dependencies:
     minimist "0.0.8"
 
-mobx-react@^5.2.3:
+mobx-react@^5.0.0:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.2.3.tgz#cdf6141c2fe63377c5813cbd254e8ce0d4676631"
   dependencies:
@@ -4249,9 +4249,9 @@ mobx-state-tree@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/mobx-state-tree/-/mobx-state-tree-3.0.0.tgz#8799d2caddfe265de90544c4bcd453635c5c5a8e"
 
-mobx@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.0.2.tgz#ea8d208eb36e9443707230d77a250f2fdd295dfb"
+mobx@^4.0.2:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-4.3.1.tgz#334e5aab4916b1d43f0faf3605a64b1b4b3ccb8d"
 
 morgan@^1.9.0:
   version "1.9.0"

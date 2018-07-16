@@ -12,7 +12,7 @@ import {
 class Form extends React.Component {
   onSubmitEvent(e) {
     e.preventDefault();
-    this.props.titleListStore.clickOnsubmit();
+    this.props.titleListStore.fetchTitles();
   }
 
   render() {
