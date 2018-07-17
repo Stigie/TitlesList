@@ -6,7 +6,7 @@ export const Title = types.model('Title', {
   placeOfPublication: types.string,
 });
 
-async function clickOnsubmit(searchText) {
+async function getTitleList(searchText) {
   const url = `http://localhost:3000/titles?q=${searchText}`;
   try {
     const response = await fetch(url);
@@ -37,7 +37,7 @@ export const TitleListStore = types.model('TitleListStore', {
     self.listOfTitles = [];
     self.status = 'pending';
     try {
-      self.listOfTitles = yield clickOnsubmit(self.inputText);
+      self.listOfTitles = yield getTitleList(self.inputText);
       self.status = 'done';
     } catch (error) {
       self.status = 'error';
