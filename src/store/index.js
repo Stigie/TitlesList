@@ -1,10 +1,5 @@
 import { types, flow } from 'mobx-state-tree';
-
-export const Title = types.model('Title', {
-  id: types.string,
-  title: types.string,
-  placeOfPublication: types.string,
-});
+import Title from './title';
 
 async function getTitleList(searchText) {
   const url = `http://localhost:3000/titles?q=${searchText}`;
@@ -21,28 +16,31 @@ async function getTitleList(searchText) {
   }
 }
 
-export const TitleListStore = types.model('TitleListStore', {
-  listOfTitles: types.array(Title),
-  status: types.enumeration('Status', ['pending', 'done', 'error', 'empty', 'start']),
-  inputText: types.string,
+const TitleListStore = types.model('TitleListStore', {
+  listOfTitles: types.optional(types.array(Title), []),
+  status: '',
+  inputText: '',
+
 }).views(self => ({
   get isButtonDisabled() {
     return !self.inputText;
   },
 })).actions((self) => {
-  function onChangeinput(mess) {
-    self.inputText = mess;
+  function onChangeInput(value) {
+    self.inputText = value;
   }
   const fetchTitles = flow(function* fetchTitles() {
-    self.listOfTitles = [];
+    self.listOfTitles.clear();
     self.status = 'pending';
     try {
       self.listOfTitles = yield getTitleList(self.inputText);
       self.status = 'done';
+      if (!self.listOfTitles.length) self.status = 'empty';
     } catch (error) {
       self.status = 'error';
     }
   });
 
-  return { fetchTitles, onChangeinput };
+  return { fetchTitles, onChangeInput };
 });
+export default TitleListStore;
