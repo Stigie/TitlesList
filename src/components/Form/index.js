@@ -12,7 +12,7 @@ import {
 class Form extends React.Component {
   onSubmitEvent(e) {
     e.preventDefault();
-    this.props.titleListStore.clickOnsubmit();
+    this.props.titleListStore.fetchTitles();
   }
 
   render() {
@@ -20,7 +20,7 @@ class Form extends React.Component {
     return (
       <Main onSubmit={(e) => { this.onSubmitEvent(e); }}>
         <Input
-          onChange={(e) => { titleListStore.onChangeinput(e.currentTarget.value); }}
+          onChange={(e) => { titleListStore.onChangeInput(e.currentTarget.value); }}
           id="Search"
           placeholder="Search" />
         <Button disabled={titleListStore.isButtonDisabled}>Go</Button>

@@ -7,9 +7,11 @@ import Content from '../Content';
 import Footer from '../Footer';
 import Container from './style';
 
+const titleLists = TitleListStore.create();
+
 function App() {
   return (
-    <Provider titleListStore={TitleListStore}>
+    <Provider titleListStore={titleLists}>
       <Container>
         <Header />
         <Form />

@@ -1,60 +1,46 @@
-import {
-  observable, computed, action, runInAction,
-} from 'mobx';
+import { types, flow } from 'mobx-state-tree';
+import Title from './title';
 
-class Title {
-  id;
-
-  @observable title;
-
-  @observable placeOfPublication;
-
-  constructor(id, title, placeOfPublication) {
-    this.id = id;
-    this.title = title;
-    this.placeOfPublication = placeOfPublication;
+async function getTitleList(searchText) {
+  const url = `http://localhost:3000/titles?q=${searchText}`;
+  try {
+    const response = await fetch(url);
+    const jsonResponse = await response.json();
+    return jsonResponse.map(item => ({
+      id: item.id,
+      title: item.title,
+      placeOfPublication: item.placeOfPublication,
+    }));
+  } catch (error) {
+    return error;
   }
 }
 
-class TitleListStore {
-  @observable listOfTitles = [];
+const TitleListStore = types.model('TitleListStore', {
+  listOfTitles: types.optional(types.array(Title), []),
+  status: '',
+  inputText: '',
 
-  @observable status = 'done';
-
-  @observable inputText = '';
-
-  @action('click on submit, filter data')
-  async clickOnsubmit() {
-    this.status = 'pending';
-    const url = `http://localhost:3000/titles?q=${this.inputText}`;
-    this.listOfTitles = [];
+}).views(self => ({
+  get isButtonDisabled() {
+    return !self.inputText;
+  },
+})).actions((self) => {
+  function onChangeInput(value) {
+    self.inputText = value;
+  }
+  const fetchTitles = flow(function* fetchTitles() {
+    self.listOfTitles.clear();
+    self.status = 'pending';
     try {
-      const response = await fetch(url);
-      const jsonResponse = await response.json();
-      this.listOfTitles = jsonResponse.map(item => new Title(item.id, item.title, item.placeOfPublication));
-      runInAction(() => {
-        if (this.listOfTitles.length === 0) {
-          this.status = 'empty';
-        } else {
-          this.status = 'done';
-        }
-      });
+      self.listOfTitles = yield getTitleList(self.inputText);
+      self.status = 'done';
+      if (!self.listOfTitles.length) self.status = 'empty';
     } catch (error) {
-      runInAction(() => {
-        this.status = 'error';
-        // console.log(error);
-      });
+      self.status = 'error';
     }
-  }
+  });
 
-  @action('onChange input')
-  onChangeinput(mess) {
-    this.inputText = mess;
-  }
-
-  @computed get isButtonDisabled() {
-    return !this.inputText;
-  }
-}
-
-export default new TitleListStore();
+  return { fetchTitles, onChangeInput };
+});
+export default TitleListStore;
